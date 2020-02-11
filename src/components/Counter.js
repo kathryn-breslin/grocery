@@ -14,12 +14,9 @@ class Counter extends Component {
 
     increaseValue = event => {
         event.preventDefault();
-        // console.log("Increase!!!")
-        // console.log(this.props.quantity)
-
         this.setState(prevState => ({
             quantity: Number(prevState.quantity) + 1
-        }), function(){
+        }), function () {
             this.props.newQuantity(this.state.quantity)
         }
         )
@@ -28,11 +25,22 @@ class Counter extends Component {
     decreaseValue = event => {
         event.preventDefault();
         console.log("Decrease!!!")
+
+        if (this.state.quantity === 0) {
+            return this.state.quantity;
+        }
+        else {
+            this.setState(prevState => ({
+                quantity: Number(prevState.quantity) - 1
+            }), function () {
+                this.props.newQuantity(this.state.quantity)
+            })
+        }
     }
 
     handleEventChange = event => {
         event.preventDefault();
-        this.setState({ total: event.target.value });
+        this.setState({ quantity: event.target.value });
     };
 
     render() {
@@ -43,7 +51,7 @@ class Counter extends Component {
                         <button onClick={this.decreaseValue} className="btn btn-light">
                             -
                     </button>
-                        <input className="form-control input" name="quantity" value={this.state.total} onChange={this.handleChangeEvent} />
+                        <input className="form-control input" name="quantity" value={this.state.quantity} onChange={this.handleChangeEvent} />
                         <button onClick={this.increaseValue} className="btn btn-light">
                             +
                     </button>
