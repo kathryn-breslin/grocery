@@ -28,7 +28,10 @@ class Item extends Component {
                         </div>
                     </div>
                 </div>
-                <Counter/>
+                <Counter
+                    quantity={this.props.quantity}
+                    newQuantity={this.props.newQuantity}
+                />
             </div>
         )
     }

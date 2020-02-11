@@ -15,6 +15,7 @@ class Counter extends Component {
     increaseValue = event => {
         event.preventDefault();
         console.log("Increase!!!")
+        console.log(this.props.quantity)
 
     }
 
