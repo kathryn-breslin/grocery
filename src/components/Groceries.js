@@ -16,6 +16,7 @@ class Groceries extends Component {
                             key={item.id}
                             name={item.title}
                             image={item.image}
+                            title={item.title}
                         />
                     )
                 })}
