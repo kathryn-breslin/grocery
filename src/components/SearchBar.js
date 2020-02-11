@@ -11,7 +11,7 @@ const SearchBar = (props) => {
             onChange={props.handleInputChange}
             value={props.search}
             name="search"
-            placeholder="Harry Potter"
+            placeholder="Ex. 'Yogurt'"
             id="search"
           />
           <button

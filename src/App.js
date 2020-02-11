@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from "./components/SearchBar";
+import Groceries from "./components/Groceries";
 import axios from "axios";
 
 class App extends Component {
@@ -31,7 +32,8 @@ class App extends Component {
       .then(response => {
         console.log(response)
         this.setState({
-          allGroceries: response.data.products
+          allGroceries: response.data.products, 
+          search: ""
         })
       })
   }
@@ -73,7 +75,10 @@ class App extends Component {
 
         <div className="container">
           <div className="row">
-            {this.state.allGroceries.map(item => (
+            <Groceries
+            allItems={this.state.allGroceries}
+            />
+            {/* {this.state.allGroceries.map(item => (
               <div className="card sm-4">
                 <div className="row no-gutters">
                   <div className="col-sm-4">
@@ -92,7 +97,7 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
