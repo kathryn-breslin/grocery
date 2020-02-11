@@ -64,8 +64,12 @@ class App extends Component {
     this.getAPI()
   };
 
-  newQuantity() {
-    console.log("This is in App.js, trying to update the quantity!")
+  newQuantity(quantityFromCounter) {
+    this.setState({ 
+      quantity: quantityFromCounter
+    }, () => {
+      console.log("Quantity in App.js from Counter: " + this.state.quantity)
+    })
   }
 
   render() {
