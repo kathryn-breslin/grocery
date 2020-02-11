@@ -14,9 +14,12 @@ class Groceries extends Component {
                     return (
                         <Item
                             key={item.id}
+                            id={item.id}
                             name={item.title}
                             image={item.image}
                             title={item.title}
+                            quantity={this.props.quantity}
+                            newQuantity={this.props.newQuantity}
                         />
                     )
                 })}

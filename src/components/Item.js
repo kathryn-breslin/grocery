@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Counter from "./Counter";
 
 class Item extends Component {
 
@@ -27,6 +28,7 @@ class Item extends Component {
                         </div>
                     </div>
                 </div>
+                <Counter/>
             </div>
         )
     }

@@ -9,19 +9,25 @@ class App extends Component {
     super();
 
     this.state = {
-      allGroceries: [], 
-      search: ""
+      allGroceries: [],
+      search: "",
+      quantity: 0
     }
+
+    this.getAPI = this.getAPI.bind(this);
+    this.handleFormSearch = this.handleFormSearch.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.newQuantity = this.newQuantity.bind(this);
   }
 
   componentDidMount() {
 
-    if(this.state.search === ""){
-      this.setState({ 
+    if (this.state.search === "") {
+      this.setState({
         search: "yogurt"
       }, () => this.getAPI())
     } else {
-      this.setState({ 
+      this.setState({
         search: this.state.search
       }, () => this.getAPI())
     }
@@ -32,7 +38,7 @@ class App extends Component {
       .then(response => {
         console.log(response)
         this.setState({
-          allGroceries: response.data.products, 
+          allGroceries: response.data.products,
           search: ""
         })
       })
@@ -58,6 +64,10 @@ class App extends Component {
     this.getAPI()
   };
 
+  newQuantity() {
+    console.log("This is in App.js, trying to update the quantity!")
+  }
+
   render() {
     return (
       <div className="container">
@@ -66,9 +76,9 @@ class App extends Component {
             <h1 className="display-4">Hello World</h1>
             <p className="lead">Grocery Store App.</p>
             <SearchBar
-            search={this.state.search}
-            handleInputChange={this.handleInputChange}
-            handleFormSearch={this.handleFormSearch}
+              search={this.state.search}
+              handleInputChange={this.handleInputChange}
+              handleFormSearch={this.handleFormSearch}
             />
           </div>
         </div>
@@ -76,28 +86,10 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <Groceries
-            allItems={this.state.allGroceries}
+              allItems={this.state.allGroceries}
+              quantity={this.state.quantity}
+              newQuantity={this.newQuantity}
             />
-            {/* {this.state.allGroceries.map(item => (
-              <div className="card sm-4">
-                <div className="row no-gutters">
-                  <div className="col-sm-4">
-                    <img
-                      src={item.image ? (item.image) : ("http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png")}
-                      className="card-img"
-                      alt={item.title}
-                    />
-                  </div>
-                  <div className="col-sm-8">
-                    <div className="card-body">
-                      <h5 className="card-title">
-                        {item.title}
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))} */}
           </div>
         </div>
       </div>
