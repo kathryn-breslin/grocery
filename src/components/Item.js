@@ -6,7 +6,24 @@ class Item extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            itemForCart: {}
+        }
 
+    }
+
+    addToCart() {
+        console.log("Get the product")
+        console.log(this.props)
+        this.setState({
+            itemForCart: {
+
+                image: this.props.image,
+                title: this.props.title,
+                id: this.props.id,
+                quantity: this.props.quantity
+            }
+        }, () => console.log("Props to add to cart: " + JSON.stringify(this.state.itemForCart)))
     }
 
     render() {
@@ -27,11 +44,17 @@ class Item extends Component {
                             </h5>
                         </div>
                     </div>
+                    <Counter
+                        quantity={this.props.quantity}
+                        newQuantity={this.props.newQuantity}
+                    />
                 </div>
-                <Counter
-                    quantity={this.props.quantity}
-                    newQuantity={this.props.newQuantity}
-                />
+                <div className="row no-gutters">
+                    <div className="col-sm-4">
+                        <button className="btn btn-outline-primary" onClick={() => this.addToCart(this.props)}>Add to Cart</button>
+
+                    </div>
+                </div>
             </div>
         )
     }
