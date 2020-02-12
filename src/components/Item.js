@@ -17,13 +17,18 @@ class Item extends Component {
         console.log(this.props)
         this.setState({
             itemForCart: {
-
                 image: this.props.image,
                 title: this.props.title,
                 id: this.props.id,
                 quantity: this.props.quantity
             }
-        }, () => console.log("Props to add to cart: " + JSON.stringify(this.state.itemForCart)))
+        }, function(){
+            //callback function to pass selected product to the 
+            //function in app.js
+            // console.log(this.props)
+            // console.log(JSON.stringify(this.state.itemForCart))
+            this.props.addNewProductToCart(this.state.itemForCart)
+        })
     }
 
     render() {

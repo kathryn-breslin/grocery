@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       allGroceries: [],
       search: "",
-      quantity: 0
+      quantity: 0,
+      cart: []
     }
 
     this.getAPI = this.getAPI.bind(this);
@@ -72,6 +73,19 @@ class App extends Component {
     })
   }
 
+  addNewProductToCart(newProduct){
+    console.log("New product has been added, triggerd in App.js: " + JSON.stringify(newProduct))
+
+    let copyOfCart = this.state.cart;
+
+    copyOfCart.push(newProduct);
+
+    console.log("Adding object to cart: " + JSON.stringify(copyOfCart))
+
+
+
+  }
+
   render() {
     return (
       <div className="container">
@@ -93,6 +107,7 @@ class App extends Component {
               allItems={this.state.allGroceries}
               quantity={this.state.quantity}
               newQuantity={this.newQuantity}
+              addNewProductToCart={this.addNewProductToCart}
             />
           </div>
         </div>

@@ -19,6 +19,7 @@ class Groceries extends Component {
                             title={item.title}
                             quantity={this.props.quantity}
                             newQuantity={this.props.newQuantity}
+                            addNewProductToCart={this.props.addNewProductToCart}
                         />
                     )
                 })}
