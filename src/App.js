@@ -9,41 +9,56 @@ class App extends Component {
     super();
 
     this.state = {
-      allGroceries: [],
+      // allGroceries: [],
+      allGroceries: [
+        {
+          id: 1,
+          image: "https://via.placeholder.com/150x150",
+          name: "Image One", 
+          title: "Image One Title"
+        },
+        {
+          id: 2,
+          image: "https://via.placeholder.com/170x170", 
+          name: "Image Two",
+          title: "Image Two Title"
+        }
+      ],
       search: "",
       quantity: 0,
       cart: []
     }
 
-    this.getAPI = this.getAPI.bind(this);
+    // this.getAPI = this.getAPI.bind(this);
     this.handleFormSearch = this.handleFormSearch.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.newQuantity = this.newQuantity.bind(this);
+    this.addNewProductToCart = this.addNewProductToCart.bind(this);
   }
 
-  componentDidMount() {
+  // componentDidMount() {
 
-    if (this.state.search === "") {
-      this.setState({
-        search: "yogurt"
-      }, () => this.getAPI())
-    } else {
-      this.setState({
-        search: this.state.search
-      }, () => this.getAPI())
-    }
-  }
+  //   if (this.state.search === "") {
+  //     this.setState({
+  //       search: "yogurt"
+  //     }, () => this.getAPI())
+  //   } else {
+  //     this.setState({
+  //       search: this.state.search
+  //     }, () => this.getAPI())
+  //   }
+  // }
 
-  getAPI() {
-    axios.get("https://api.spoonacular.com/food/products/search?query=" + this.state.search + "&apiKey=3fcefe97ed5842738ec5812e8aa60523")
-      .then(response => {
-        console.log(response)
-        this.setState({
-          allGroceries: response.data.products,
-          search: ""
-        })
-      })
-  }
+  // getAPI() {
+  //   axios.get("https://api.spoonacular.com/food/products/search?query=" + this.state.search + "&apiKey=3fcefe97ed5842738ec5812e8aa60523")
+  //     .then(response => {
+  //       console.log(response)
+  //       this.setState({
+  //         allGroceries: response.data.products,
+  //         search: ""
+  //       })
+  //     })
+  // }
 
   handleInputChange = (event) => {
     event.preventDefault();
@@ -62,18 +77,18 @@ class App extends Component {
     event.preventDefault();
     this.setState({ search: search });
     console.log("Search:" + this.state.search);
-    this.getAPI()
+    // this.getAPI()
   };
 
   newQuantity(quantityFromCounter) {
-    this.setState({ 
+    this.setState({
       quantity: quantityFromCounter
     }, () => {
       console.log("Quantity in App.js from Counter: " + this.state.quantity)
     })
   }
 
-  addNewProductToCart(newProduct){
+  addNewProductToCart(newProduct) {
     console.log("New product has been added, triggerd in App.js: " + JSON.stringify(newProduct))
 
     let copyOfCart = this.state.cart;
@@ -81,9 +96,6 @@ class App extends Component {
     copyOfCart.push(newProduct);
 
     console.log("Adding object to cart: " + JSON.stringify(copyOfCart))
-
-
-
   }
 
   render() {
