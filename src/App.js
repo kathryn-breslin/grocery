@@ -107,13 +107,19 @@ class App extends Component {
   // }
 
   addNewProductToCart(newProduct) {
-
     let copyOfCart = this.state.cart;
-
     const found = copyOfCart.some(item => item.id === newProduct.id);
 
-    if (!found ) copyOfCart.push(newProduct);
-    
+    if ( !found ) copyOfCart.push(newProduct);
+
+    else if ( found ) {
+      copyOfCart.forEach((element, index) => {
+        if (element.id === newProduct.id) {
+          copyOfCart[index] = newProduct
+        }
+      })
+    }
+
     this.setState({
       cart: copyOfCart
     }, console.log("This is the new cart: " + JSON.stringify(this.state.cart)))
