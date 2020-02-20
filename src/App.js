@@ -14,12 +14,12 @@ class App extends Component {
         {
           id: 1,
           image: "https://via.placeholder.com/150x150",
-          name: "Image One", 
+          name: "Image One",
           title: "Image One Title"
         },
         {
           id: 2,
-          image: "https://via.placeholder.com/170x170", 
+          image: "https://via.placeholder.com/170x170",
           name: "Image Two",
           title: "Image Two Title"
         }
@@ -34,6 +34,7 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.newQuantity = this.newQuantity.bind(this);
     this.addNewProductToCart = this.addNewProductToCart.bind(this);
+    // this.checkForId = this.checkForId.bind(this);
   }
 
   // componentDidMount() {
@@ -88,14 +89,59 @@ class App extends Component {
     })
   }
 
+  // function add(arr, name) {
+  //   const { length } = arr;
+  //   const id = length + 1;
+  //   const found = arr.some(el => el.username === name);
+  //   if (!found) arr.push({ id, username: name });
+  //   return arr;
+  // }
+  
+  // console.log(add(arr, 'ted'));
+
+  // checkForId(productId) {
+  //   let cart = this.state.cart;
+  //   return cart.some(function (item) {
+  //     return item.id === productId
+  //   })
+  // }
+
   addNewProductToCart(newProduct) {
-    console.log("New product has been added, triggerd in App.js: " + JSON.stringify(newProduct))
 
     let copyOfCart = this.state.cart;
 
-    copyOfCart.push(newProduct);
+    const found = copyOfCart.some(item => item.id === newProduct.id);
 
-    console.log("Adding object to cart: " + JSON.stringify(copyOfCart))
+    if (!found ) copyOfCart.push(newProduct);
+    
+    this.setState({
+      cart: copyOfCart
+    }, console.log("This is the new cart: " + JSON.stringify(this.state.cart)))
+    
+    // console.log("New product has been added, triggerd in App.js: " + JSON.stringify(newProduct))
+    // let copyOfCart = this.state.cart;
+
+    // let itemID = newProduct.id
+    // console.log("New Product in App.js: ID ----- " + itemID)
+    // console.log("Copy of Cart: " + JSON.stringify(copyOfCart))
+
+    // if (this.checkForId(itemID)){
+    //   console.log("Product Id exists!");
+    // }
+    // copyOfCart.push(newProduct)
+    // console.log("Adding new product to cart!")
+    // return true;
+    // if (copyOfCart.includes(newProduct.id)) {
+    //   console.log("Id exists")
+    //   console.log("new product id: " + newProduct.id)
+    // }
+    // else {
+    //   console.log("Id does not exists!")
+    //   copyOfCart.push(newProduct);
+
+    //   console.log("Adding object to cart: " + JSON.stringify(copyOfCart))
+    //   console.log("new product id: " + newProduct.id)
+    // }
   }
 
   render() {
