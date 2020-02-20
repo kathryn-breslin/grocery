@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from "./components/SearchBar";
 import Groceries from "./components/Groceries";
 import CartModal from "./components/Modal";
+import Jumbo from "./components/Jumbo";
 import axios from "axios";
 import "./App.css"
 
@@ -30,7 +31,7 @@ class App extends Component {
       quantity: 0,
       totalCartQuantity: 0,
       cart: [],
-      show: Boolean
+      show: false
     }
 
     // this.getAPI = this.getAPI.bind(this);
@@ -42,18 +43,21 @@ class App extends Component {
   }
 
 
-  // componentDidMount() {
+  componentDidMount() {
 
-  //   if (this.state.search === "") {
-  //     this.setState({
-  //       search: "yogurt"
-  //     }, () => this.getAPI())
-  //   } else {
-  //     this.setState({
-  //       search: this.state.search
-  //     }, () => this.getAPI())
-  //   }
-  // }
+    // if (this.state.search === "") {
+    //   this.setState({
+    //     search: "yogurt"
+    //   }, () => this.getAPI())
+    // } else {
+    //   this.setState({
+    //     search: this.state.search
+    //   }, () => this.getAPI())
+    // }
+    this.setState({
+      show: false
+    })
+  }
 
   // getAPI() {
   //   axios.get("https://api.spoonacular.com/food/products/search?query=" + this.state.search + "&apiKey=3fcefe97ed5842738ec5812e8aa60523")
@@ -66,11 +70,11 @@ class App extends Component {
   //     })
   // }
 
-  componentDidMount() {
-    this.setState({
-      show: false
-    })
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     show: false
+  //   })
+  // }
   handleInputChange = (event) => {
     event.preventDefault();
 
@@ -149,19 +153,15 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <div className="jumbotron jumbotron-fluid">
-          <div className="container">
-            <h1 className="display-4">Hello World</h1>
-            <p className="lead">Grocery Store App.</p>
-            <SearchBar
-              search={this.state.search}
-              handleInputChange={this.handleInputChange}
-              handleFormSearch={this.handleFormSearch}
-            />
-            <p>Total Products: {this.state.totalCartQuantity}</p>
-            <button onClick={this.open}>View Cart</button>
-          </div>
-        </div>
+        <Jumbo
+        />
+          {/* <SearchBar
+            search={this.state.search}
+            handleInputChange={this.handleInputChange}
+            handleFormSearch={this.handleFormSearch}
+          />
+          <p>Total Products: {this.state.totalCartQuantity}</p>
+          <button onClick={this.open}>View Cart</button> */}
 
         <div className="container">
           <div className="row">
@@ -173,12 +173,14 @@ class App extends Component {
             />
           </div>
         </div>
+
         <CartModal
           show={this.state.show}
           open={this.open}
           close={this.close}
           cart={this.state.cart}
         />
+
       </div>
     )
   }

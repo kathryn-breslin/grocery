@@ -51,7 +51,11 @@ class Counter extends Component {
 
     handleEventChange = event => {
         event.preventDefault();
-        this.setState({ quantity: event.target.value });
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        })
+        // this.setState({ quantity: event.target.value });
     };
 
     render() {
@@ -62,7 +66,7 @@ class Counter extends Component {
                         <button onClick={this.decreaseValue} className="btn btn-light">
                             -
                     </button>
-                        <input className="form-control input" name="quantity" value={this.state.quantity} onChange={this.handleChangeEvent} />
+                        <input className="form-control input" type="text" name="quantity" value={this.state.quantity} onChange={this.handleEventChange} />
                         <button onClick={this.increaseValue} className="btn btn-light">
                             +
                     </button>

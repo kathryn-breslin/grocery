@@ -7,7 +7,7 @@ class Groceries extends Component {
 
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <div className="row">
                     <div className="col-12">
                         {/* {console.log("Console log on the Groceries page, 'this.props.allItems': " + JSON.stringify(this.props.allItems))} */}
