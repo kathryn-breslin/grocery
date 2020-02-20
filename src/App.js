@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from "./components/SearchBar";
 import Groceries from "./components/Groceries";
+import CartModal from "./components/Modal";
 import axios from "axios";
 
 class App extends Component {
@@ -27,7 +28,8 @@ class App extends Component {
       search: "",
       quantity: 0,
       totalCartQuantity: 0,
-      cart: []
+      cart: [],
+      show: Boolean
     }
 
     // this.getAPI = this.getAPI.bind(this);
@@ -37,6 +39,7 @@ class App extends Component {
     this.addNewProductToCart = this.addNewProductToCart.bind(this);
     this.addToTotal = this.addToTotal.bind(this);
   }
+
 
   // componentDidMount() {
 
@@ -62,6 +65,11 @@ class App extends Component {
   //     })
   // }
 
+  componentDidMount () {
+    this.setState({
+      show: false
+    })
+  }
   handleInputChange = (event) => {
     event.preventDefault();
 
@@ -94,9 +102,9 @@ class App extends Component {
     let copyOfCart = this.state.cart;
     const found = copyOfCart.some(item => item.id === newProduct.id);
 
-    if ( !found ) copyOfCart.push(newProduct);
+    if (!found) copyOfCart.push(newProduct);
 
-    else if ( found ) {
+    else if (found) {
       copyOfCart.forEach((element, index) => {
         if (element.id === newProduct.id) {
           copyOfCart[index] = newProduct
@@ -112,17 +120,29 @@ class App extends Component {
   }
 
   addToTotal() {
-    let totalQuantity = 0; 
+    let totalQuantity = 0;
     let copyOfCart = this.state.cart;
 
-    for (var i = 0; i < copyOfCart.length; i++){
+    for (var i = 0; i < copyOfCart.length; i++) {
       totalQuantity += copyOfCart[i].quantity
       console.log("Total Quantity in loop: " + totalQuantity)
     }
 
-    this.setState({ 
+    this.setState({
       totalCartQuantity: totalQuantity
     }, console.log("Total Quantity in set state: " + this.state.totalCartQuantity))
+  }
+
+  close = () => {
+    this.setState({
+      show: false
+    })
+  }
+
+  open = () => {
+    this.setState({
+      show: true
+    })
   }
 
   render() {
@@ -137,7 +157,8 @@ class App extends Component {
               handleInputChange={this.handleInputChange}
               handleFormSearch={this.handleFormSearch}
             />
-            <p>Total: {this.state.totalCartQuantity}</p>
+            <p>Total Products: {this.state.totalCartQuantity}</p>
+            <button onClick={this.open}>Open Modal</button>
           </div>
         </div>
 
@@ -151,6 +172,11 @@ class App extends Component {
             />
           </div>
         </div>
+        <CartModal
+          show={this.state.show}
+          open={this.open}
+          close={this.close}
+        />
       </div>
     )
   }
