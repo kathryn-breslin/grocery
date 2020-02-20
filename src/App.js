@@ -26,6 +26,7 @@ class App extends Component {
       ],
       search: "",
       quantity: 0,
+      totalCartQuantity: 0,
       cart: []
     }
 
@@ -34,7 +35,7 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.newQuantity = this.newQuantity.bind(this);
     this.addNewProductToCart = this.addNewProductToCart.bind(this);
-    // this.checkForId = this.checkForId.bind(this);
+    this.addToTotal = this.addToTotal.bind(this);
   }
 
   // componentDidMount() {
@@ -89,23 +90,6 @@ class App extends Component {
     })
   }
 
-  // function add(arr, name) {
-  //   const { length } = arr;
-  //   const id = length + 1;
-  //   const found = arr.some(el => el.username === name);
-  //   if (!found) arr.push({ id, username: name });
-  //   return arr;
-  // }
-  
-  // console.log(add(arr, 'ted'));
-
-  // checkForId(productId) {
-  //   let cart = this.state.cart;
-  //   return cart.some(function (item) {
-  //     return item.id === productId
-  //   })
-  // }
-
   addNewProductToCart(newProduct) {
     let copyOfCart = this.state.cart;
     const found = copyOfCart.some(item => item.id === newProduct.id);
@@ -123,31 +107,22 @@ class App extends Component {
     this.setState({
       cart: copyOfCart
     }, console.log("This is the new cart: " + JSON.stringify(this.state.cart)))
-    
-    // console.log("New product has been added, triggerd in App.js: " + JSON.stringify(newProduct))
-    // let copyOfCart = this.state.cart;
 
-    // let itemID = newProduct.id
-    // console.log("New Product in App.js: ID ----- " + itemID)
-    // console.log("Copy of Cart: " + JSON.stringify(copyOfCart))
+    this.addToTotal();
+  }
 
-    // if (this.checkForId(itemID)){
-    //   console.log("Product Id exists!");
-    // }
-    // copyOfCart.push(newProduct)
-    // console.log("Adding new product to cart!")
-    // return true;
-    // if (copyOfCart.includes(newProduct.id)) {
-    //   console.log("Id exists")
-    //   console.log("new product id: " + newProduct.id)
-    // }
-    // else {
-    //   console.log("Id does not exists!")
-    //   copyOfCart.push(newProduct);
+  addToTotal() {
+    let totalQuantity = 0; 
+    let copyOfCart = this.state.cart;
 
-    //   console.log("Adding object to cart: " + JSON.stringify(copyOfCart))
-    //   console.log("new product id: " + newProduct.id)
-    // }
+    for (var i = 0; i < copyOfCart.length; i++){
+      totalQuantity += copyOfCart[i].quantity
+      console.log("Total Quantity in loop: " + totalQuantity)
+    }
+
+    this.setState({ 
+      totalCartQuantity: totalQuantity
+    }, console.log("Total Quantity in set state: " + this.state.totalCartQuantity))
   }
 
   render() {
@@ -162,6 +137,7 @@ class App extends Component {
               handleInputChange={this.handleInputChange}
               handleFormSearch={this.handleFormSearch}
             />
+            <p>Total: {this.state.totalCartQuantity}</p>
           </div>
         </div>
 
