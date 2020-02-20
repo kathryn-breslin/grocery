@@ -154,15 +154,17 @@ class App extends Component {
     return (
       <div className="container">
         <Jumbo
-        />
-          {/* <SearchBar
+          totalCartQuantity={this.state.totalCartQuantity}
+          openClick={this.open}
+          searchBar={
+          <SearchBar
             search={this.state.search}
             handleInputChange={this.handleInputChange}
             handleFormSearch={this.handleFormSearch}
           />
-          <p>Total Products: {this.state.totalCartQuantity}</p>
-          <button onClick={this.open}>View Cart</button> */}
-
+        }
+        >
+        </Jumbo>
         <div className="container">
           <div className="row">
             <Groceries

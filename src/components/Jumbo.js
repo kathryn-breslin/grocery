@@ -2,18 +2,24 @@ import React from "react";
 import { Jumbotron, Container } from "react-bootstrap";
 // import SearchBar from "./SearchBar";
 
-function Jumbo({children}) {
+function Jumbo(props) {
     return (
-    <Jumbotron fluid>
-        <Container>
-            <h1>Fluid jumbotron</h1>
-            <p>
-                This is a modified jumbotron that occupies the entire horizontal space of
-                its parent.
-                </p>
-                
-        </Container>
-    </Jumbotron>
+        <Jumbotron fluid>
+            <Container>
+                <div className="row">
+                    <div className="col-4">
+                        <h1>Your Cart</h1>
+                        <p>Total: {props.totalCartQuantity}</p>
+                        <button
+                            className="btn btn-outline-primary my-2 my-sm-0"
+                            onClick={props.openClick}>View Cart</button>
+                    </div>
+                    <div className="col-4">
+                        {props.searchBar}
+                    </div>
+                </div>
+            </Container>
+        </Jumbotron>
     )
 };
 
