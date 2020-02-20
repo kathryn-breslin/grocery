@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar";
 import Groceries from "./components/Groceries";
 import CartModal from "./components/Modal";
 import axios from "axios";
+import "./App.css"
 
 class App extends Component {
 
@@ -65,7 +66,7 @@ class App extends Component {
   //     })
   // }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       show: false
     })
@@ -158,7 +159,7 @@ class App extends Component {
               handleFormSearch={this.handleFormSearch}
             />
             <p>Total Products: {this.state.totalCartQuantity}</p>
-            <button onClick={this.open}>Open Modal</button>
+            <button onClick={this.open}>View Cart</button>
           </div>
         </div>
 
@@ -176,6 +177,7 @@ class App extends Component {
           show={this.state.show}
           open={this.open}
           close={this.close}
+          cart={this.state.cart}
         />
       </div>
     )

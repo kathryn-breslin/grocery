@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Card, Button } from "react-bootstrap";
 import Counter from "./Counter";
+import "./Item.css";
 
 class Item extends Component {
 
@@ -22,7 +24,7 @@ class Item extends Component {
                 id: this.props.id,
                 quantity: this.props.quantity
             }
-        }, function(){
+        }, function () {
             //callback function to pass selected product to the 
             //function in app.js
             // console.log(this.props)
@@ -33,34 +35,20 @@ class Item extends Component {
 
     render() {
         return (
-            <div className="card sm-4">
-                <div className="row no-gutters">
-                    <div className="col-sm-4">
-                        <img
-                            src={this.props.image ? (this.props.image) : ("http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png")}
-                            className="card-img"
-                            alt={this.props.title}
-                        />
-                    </div>
-                    <div className="col-sm-8">
-                        <div className="card-body">
-                            <h5 className="card-title">
-                                {this.props.title}
-                            </h5>
-                        </div>
-                    </div>
+            <Card style={{ width: '20rem' }}>
+                <Card.Img variant="top" src={this.props.image ? (this.props.image) : ("http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png")} />
+                <Card.Body>
+                    <Card.Title>{this.props.title}</Card.Title>
+                    <Card.Text>
+                        {this.props.name}
+                    </Card.Text>
                     <Counter
                         quantity={this.props.quantity}
                         newQuantity={this.props.newQuantity}
                     />
-                </div>
-                <div className="row no-gutters">
-                    <div className="col-sm-4">
-                        <button className="btn btn-outline-primary" onClick={() => this.addToCart(this.props)}>Add to Cart</button>
-
-                    </div>
-                </div>
-            </div>
+                    <Button style={{ margin: '10px' }} variant="primary" onClick={() => this.addToCart(this.props)}>Add To Cart</Button>
+                </Card.Body>
+            </Card>
         )
     }
 }

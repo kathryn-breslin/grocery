@@ -1,14 +1,30 @@
-import React  from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from "react";
+import { Modal, Button, Card } from "react-bootstrap";
 
 function CartModal(props) {
     return (
         <>
             <Modal show={props.show} onHide={props.close}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Your Cart</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                    {props.cart.map(item => {
+                        return (
+                            <Card style={{ width: '18rem' }} key={item.id}>
+                                <Card.Img variant="top" src={item.image} />
+                                <Card.Body>
+                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Text>
+                                        {item.text}
+                                        Quantity: {item.quantity}
+                                    </Card.Text>
+                                    <Button variant="primary">Remove</Button>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })}
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={props.close}>
                         Close

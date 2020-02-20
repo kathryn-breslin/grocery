@@ -7,22 +7,26 @@ class Groceries extends Component {
 
     render() {
         return (
-            <div>
-                {/* {console.log("Console log on the Groceries page, 'this.props.allItems': " + JSON.stringify(this.props.allItems))} */}
-                {this.props.allItems.map(item => {
-                    return (
-                        <Item
-                            key={item.id}
-                            id={item.id}
-                            name={item.title}
-                            image={item.image}
-                            title={item.title}
-                            quantity={this.props.quantity}
-                            newQuantity={this.props.newQuantity}
-                            addNewProductToCart={this.props.addNewProductToCart}
-                        />
-                    )
-                })}
+            <div class="container">
+                <div className="row">
+                    <div className="col-12">
+                        {/* {console.log("Console log on the Groceries page, 'this.props.allItems': " + JSON.stringify(this.props.allItems))} */}
+                        {this.props.allItems.map(item => {
+                            return (
+                                <Item
+                                    key={item.id}
+                                    id={item.id}
+                                    name={item.title}
+                                    image={item.image}
+                                    title={item.title}
+                                    quantity={this.props.quantity}
+                                    newQuantity={this.props.newQuantity}
+                                    addNewProductToCart={this.props.addNewProductToCart}
+                                />
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
         )
 
