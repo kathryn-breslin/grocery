@@ -124,6 +124,16 @@ class App extends Component {
     this.addToTotal();
   }
 
+
+  removeFromCart = (removedProduct) => {
+    // console.log("Remove from cart in App.js")
+    // console.log("Item to remove: " + JSON.stringify(removedProduct))
+
+    this.setState(prevState => ({
+      cart: prevState.cart.filter(item => item.id !== removedProduct.id)
+    }))
+  }
+
   addToTotal() {
     let totalQuantity = 0;
     let copyOfCart = this.state.cart;
@@ -132,7 +142,6 @@ class App extends Component {
       totalQuantity += copyOfCart[i].quantity
       console.log("Total Quantity in loop: " + totalQuantity)
     }
-
     this.setState({
       totalCartQuantity: totalQuantity
     }, console.log("Total Quantity in set state: " + this.state.totalCartQuantity))
@@ -150,6 +159,14 @@ class App extends Component {
     })
   }
 
+  checkCartOut = () => {
+    console.log("Check out cart")
+  }
+
+  editCart = () => {
+    console.log("Edit Cart")
+  }
+
   render() {
     return (
       <div className="container">
@@ -157,14 +174,13 @@ class App extends Component {
           totalCartQuantity={this.state.totalCartQuantity}
           openClick={this.open}
           searchBar={
-          <SearchBar
-            search={this.state.search}
-            handleInputChange={this.handleInputChange}
-            handleFormSearch={this.handleFormSearch}
-          />
-        }
-        >
-        </Jumbo>
+            <SearchBar
+              search={this.state.search}
+              handleInputChange={this.handleInputChange}
+              handleFormSearch={this.handleFormSearch}
+            />
+          }
+        />
         <div className="container">
           <div className="row">
             <Groceries
@@ -180,6 +196,9 @@ class App extends Component {
           show={this.state.show}
           open={this.open}
           close={this.close}
+          editCart={this.editCart}
+          removeFromCart={this.removeFromCart}
+          checkout={this.checkCartOut}
           cart={this.state.cart}
         />
 
