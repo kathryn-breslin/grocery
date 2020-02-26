@@ -9,10 +9,14 @@ class CartModal extends Component {
         this.state = {
             cart: [],
             edit: false,
-            bodyContent: true,
             itemToEdit: [],
             updatedCartItem: {}
         }
+
+        this.editCart = this.editCart.bind(this);
+        this.editTransition = this.editTransition.bind(this);
+        this.saveUpdate = this.saveUpdate.bind(this);
+        this.saveUpdatedItem = this.saveUpdatedItem.bind(this);
     }
 
     componentDidMount() {
@@ -25,12 +29,8 @@ class CartModal extends Component {
         console.log("Editing cart in Modal component")
         // console.log("Item to edit: " + JSON.stringify(item))
 
-        // this.setState({
-        //     itemToEdit: item
-        // })
         this.setState({
             edit: true,
-            bodycontent: "false"
         }, () => this.editTransition())
 
     }
@@ -56,6 +56,19 @@ class CartModal extends Component {
         }
     }
 
+    //this function is called when the user
+    //clicks the 'Save' button that is rendered
+    //only if the counter is shown
+
+    //it then calls the 
+    //saveUpdateItem function
+    //which takes in the new state and calls
+    //this.props.addNewProductToCart in App.js
+
+    //this.props.addNewProductToCart in App.js
+    //resets the 'quantity' state and renders
+    //the new total in the Jumbotron
+
     saveUpdate = () => {
         // console.log("Save update");
         // console.log("Item to be saved.")
@@ -73,13 +86,11 @@ class CartModal extends Component {
 
         this.setState({
             updatedCartItem: cartcartcart
-        }, () => this.checkState())
+        }, () => this.saveUpdatedItem())
     }
 
-    checkState = () => {
-
+    saveUpdatedItem = () => {
         console.log("This is the state checker: " + JSON.stringify(this.state.updatedCartItem))
-
         this.props.addNewProductToCart(this.state.updatedCartItem)
     }
 
