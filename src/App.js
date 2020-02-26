@@ -164,9 +164,6 @@ class App extends Component {
     console.log("Check out cart")
   }
 
-  editCart = () => {
-    console.log("Edit Cart")
-  }
 
   render() {
     return (
@@ -204,6 +201,7 @@ class App extends Component {
           quantity={this.state.quantity}
           newQuantity={this.newQuantity}
           addNewProductToCart={this.addNewProductToCart}
+          addToTotal={this.addToTotal}
         />
 
       </div>

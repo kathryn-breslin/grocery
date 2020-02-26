@@ -3,13 +3,15 @@ import { Modal, Button, Card } from "react-bootstrap";
 import Counter from "./Counter";
 
 class CartModal extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             cart: [],
             edit: false,
-            bodyContent: true
+            bodyContent: true,
+            itemToEdit: [],
+            updatedCartItem: {}
         }
     }
 
@@ -19,20 +21,27 @@ class CartModal extends Component {
         })
     }
 
-    editCart = (item) => {
+    editCart = () => {
         console.log("Editing cart in Modal component")
+        // console.log("Item to edit: " + JSON.stringify(item))
+
+        // this.setState({
+        //     itemToEdit: item
+        // })
         this.setState({
             edit: true,
             bodycontent: "false"
-        }, () => this.editTransition(item))
+        }, () => this.editTransition())
 
     }
 
-    editTransition = (item) => {
+    editTransition = () => {
         const editCartItem = this.state.edit;
+        // const editItemInCart = this.state.itemToEdit;
 
-        console.log("Edit state: " + this.state.edit)
-        console.log("Item to edit: " + JSON.stringify(item))
+        console.log("PROPS in Edit Transition Function: " + JSON.stringify(this.props))
+        // console.log("Edit state: " + this.state.edit)
+        // console.log("Item to edit: " + JSON.stringify(editItemInCart))
 
         if (editCartItem) {
             return (
@@ -41,10 +50,34 @@ class CartModal extends Component {
                         quantity={this.props.quantity}
                         newQuantity={this.props.newQuantity}
                     />
+                    <Button variant="primary" onClick={() => this.saveUpdate(this.props)}>Save</Button>
                 </>
             )
         }
     }
+
+    saveUpdate = () => {
+        // console.log("Save update");
+        // console.log("Item to be saved.")
+        let cartcartcart = {}
+
+        // console.log("PROPS in SaveUpdate function: " + JSON.stringify(this.props));
+        this.props.cart.map(item => {
+            // cartcartcart.image = item.image,
+            // cartcartcart.title = item.title,
+            // cartcartcart.id = item.id,
+            // cartcartcart.quantity = this.props.quantity
+            cartcartcart = {
+                image: item.image,
+                title: item.title,
+                id: item.id,
+                quantity: this.props.quantity
+            }
+        }, this.setState({
+            updatedCartItem: cartcartcart
+        }), () =>  this.props.addNewProductToCart(this.state.updatedCartItem))
+    }
+
 
     render() {
 
@@ -69,7 +102,7 @@ class CartModal extends Component {
                                         <Button variant="primary" onClick={() => this.editCart(item)}>Edit</Button>
                                         <Button variant="warning" onClick={() => this.props.removeFromCart(item)}>Remove</Button>
 
-                                        {this.editTransition()}
+                                        {this.editTransition(this.props)}
                                     </Card.Body>
                                 </Card>
                             )
