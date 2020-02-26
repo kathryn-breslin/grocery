@@ -63,19 +63,24 @@ class CartModal extends Component {
 
         // console.log("PROPS in SaveUpdate function: " + JSON.stringify(this.props));
         this.props.cart.map(item => {
-            // cartcartcart.image = item.image,
-            // cartcartcart.title = item.title,
-            // cartcartcart.id = item.id,
-            // cartcartcart.quantity = this.props.quantity
             cartcartcart = {
                 image: item.image,
                 title: item.title,
                 id: item.id,
                 quantity: this.props.quantity
             }
-        }, this.setState({
+        })
+
+        this.setState({
             updatedCartItem: cartcartcart
-        }), () =>  this.props.addNewProductToCart(this.state.updatedCartItem))
+        }, () => this.checkState())
+    }
+
+    checkState = () => {
+
+        console.log("This is the state checker: " + JSON.stringify(this.state.updatedCartItem))
+
+        this.props.addNewProductToCart(this.state.updatedCartItem)
     }
 
 
