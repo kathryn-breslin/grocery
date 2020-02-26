@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import SearchBar from "./components/SearchBar";
 import Groceries from "./components/Groceries";
-import CartModal from "./components/Modal";
+import CartModal from "./components/CartModal";
+// import EditModal from "./components/EditModal";
 import Jumbo from "./components/Jumbo";
 import axios from "axios";
 import "./App.css"
@@ -31,7 +32,7 @@ class App extends Component {
       quantity: 0,
       totalCartQuantity: 0,
       cart: [],
-      show: false
+      show: false, 
     }
 
     // this.getAPI = this.getAPI.bind(this);
@@ -200,6 +201,9 @@ class App extends Component {
           removeFromCart={this.removeFromCart}
           checkout={this.checkCartOut}
           cart={this.state.cart}
+          quantity={this.state.quantity}
+          newQuantity={this.newQuantity}
+          addNewProductToCart={this.addNewProductToCart}
         />
 
       </div>
