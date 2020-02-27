@@ -121,7 +121,7 @@ class App extends Component {
         toastTitle: newProduct.title,
         toastQuantity: newProduct.quantity, 
         showToast: true
-      })
+      }, this.resetToast())
     }
     else if (found) {
       copyOfCart.forEach((element, index) => {
@@ -154,6 +154,16 @@ class App extends Component {
         />
       )
     }
+  }
+
+  resetToast() {
+    setTimeout(
+      function() {
+          this.setState({showToast: false});
+      }
+      .bind(this),
+      2000
+  )
   }
 
 

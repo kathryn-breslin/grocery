@@ -4,7 +4,7 @@ import { Toast } from "react-bootstrap";
 function ToastComponent(props) {
     return (
         <div>
-            <Toast show={props.show}>
+            <Toast show={props.show} onClose={props.show}>
                 <Toast.Header>
                     <img src={props.image} className="rounded mr-2" alt="" />
                     <strong className="mr-auto">Added to your cart!</strong>
