@@ -4,6 +4,7 @@ import Groceries from "./components/Groceries";
 import CartModal from "./components/CartModal";
 import Jumbo from "./components/Jumbo";
 import CartNav from "./components/CartNav";
+import ToastComponent from "./components/Toast";
 import axios from "axios";
 import "./App.css"
 
@@ -33,6 +34,11 @@ class App extends Component {
       totalCartQuantity: 0,
       cart: [],
       show: false,
+      showToast: false,
+      closeToast: false, 
+      toastImage: "", 
+      toastTitle: "", 
+      toastQuantity: ""
     }
 
     // this.getAPI = this.getAPI.bind(this);
@@ -108,8 +114,15 @@ class App extends Component {
     let copyOfCart = this.state.cart;
     const found = copyOfCart.some(item => item.id === newProduct.id);
 
-    if (!found) copyOfCart.push(newProduct);
-
+    if (!found) {
+      copyOfCart.push(newProduct);
+      this.setState({
+        toastImage: newProduct.image,
+        toastTitle: newProduct.title,
+        toastQuantity: newProduct.quantity, 
+        showToast: true
+      })
+    }
     else if (found) {
       copyOfCart.forEach((element, index) => {
         if (element.id === newProduct.id) {
@@ -123,6 +136,24 @@ class App extends Component {
     }, console.log("This is the new cart: " + JSON.stringify(this.state.cart)))
 
     this.addToTotal();
+  }
+
+  // closeToastFunction () {
+  //   this.setState({
+  //     closeToast: true, 
+  //     showToast: false
+  //   })
+  // }
+  launchToast = () => {
+    if (this.state.showToast){
+      return (
+        <ToastComponent
+        image={this.state.toastImage}
+        title={this.state.toastTitle}
+        quantity={this.state.toastQuantity}
+        />
+      )
+    }
   }
 
 
@@ -164,7 +195,6 @@ class App extends Component {
     console.log("Check out cart")
   }
 
-
   render() {
     return (
       <div className="container">
@@ -181,6 +211,7 @@ class App extends Component {
         />
         <Jumbo />
         <div className="container">
+          {this.launchToast()}
           <div className="row">
             <Groceries
               allItems={this.state.allGroceries}
@@ -204,7 +235,6 @@ class App extends Component {
           addNewProductToCart={this.addNewProductToCart}
           addToTotal={this.addToTotal}
         />
-
       </div>
     )
   }

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Item from "./Item";
+import ToastComponent from "./Toast";
+
 class Groceries extends Component {
     constructor() {
         super();
@@ -22,6 +24,10 @@ class Groceries extends Component {
                                     quantity={this.props.quantity}
                                     newQuantity={this.props.newQuantity}
                                     addNewProductToCart={this.props.addNewProductToCart}
+                                    // toast={<ToastComponent
+                                    //     showToast={this.props.showToast}
+                                        // close={this.props.close}
+                                    // />}
                                 />
                             )
                         })}
