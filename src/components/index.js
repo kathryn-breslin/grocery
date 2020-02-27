@@ -4,4 +4,4 @@ export * from "./Groceries";
 export * from "./Counter";
 export * from "./CartModal";
 export * from "./Jumbo";
-export * from "./EditModal";
+export * from "./CartNav";

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import SearchBar from "./components/SearchBar";
 import Groceries from "./components/Groceries";
 import CartModal from "./components/CartModal";
-// import EditModal from "./components/EditModal";
 import Jumbo from "./components/Jumbo";
+import CartNav from "./components/CartNav";
 import axios from "axios";
 import "./App.css"
 
@@ -32,7 +32,7 @@ class App extends Component {
       quantity: 0,
       totalCartQuantity: 0,
       cart: [],
-      show: false, 
+      show: false,
     }
 
     // this.getAPI = this.getAPI.bind(this);
@@ -168,7 +168,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Jumbo
+        <CartNav
           totalCartQuantity={this.state.totalCartQuantity}
           openClick={this.open}
           searchBar={
@@ -179,6 +179,7 @@ class App extends Component {
             />
           }
         />
+        <Jumbo />
         <div className="container">
           <div className="row">
             <Groceries
