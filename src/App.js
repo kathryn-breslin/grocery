@@ -35,9 +35,9 @@ class App extends Component {
       cart: [],
       show: false,
       showToast: false,
-      closeToast: false, 
-      toastImage: "", 
-      toastTitle: "", 
+      closeToast: false,
+      toastImage: "",
+      toastTitle: "",
       toastQuantity: ""
     }
 
@@ -119,7 +119,7 @@ class App extends Component {
       this.setState({
         toastImage: newProduct.image,
         toastTitle: newProduct.title,
-        toastQuantity: newProduct.quantity, 
+        toastQuantity: newProduct.quantity,
         showToast: true
       }, this.resetToast())
     }
@@ -138,19 +138,13 @@ class App extends Component {
     this.addToTotal();
   }
 
-  // closeToastFunction () {
-  //   this.setState({
-  //     closeToast: true, 
-  //     showToast: false
-  //   })
-  // }
   launchToast = () => {
-    if (this.state.showToast){
+    if (this.state.showToast) {
       return (
         <ToastComponent
-        image={this.state.toastImage}
-        title={this.state.toastTitle}
-        quantity={this.state.toastQuantity}
+          image={this.state.toastImage}
+          title={this.state.toastTitle}
+          quantity={this.state.toastQuantity}
         />
       )
     }
@@ -158,19 +152,15 @@ class App extends Component {
 
   resetToast() {
     setTimeout(
-      function() {
-          this.setState({showToast: false});
+      function () {
+        this.setState({ showToast: false });
       }
-      .bind(this),
+        .bind(this),
       2000
-  )
+    )
   }
 
-
   removeFromCart = (removedProduct) => {
-    // console.log("Remove from cart in App.js")
-    // console.log("Item to remove: " + JSON.stringify(removedProduct))
-
     this.setState(prevState => ({
       cart: prevState.cart.filter(item => item.id !== removedProduct.id)
     }))

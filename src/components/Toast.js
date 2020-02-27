@@ -6,11 +6,13 @@ function ToastComponent(props) {
         <div>
             <Toast show={props.show} onClose={props.show}>
                 <Toast.Header>
-                    <img src={props.image} className="rounded mr-2" alt="" />
+                    <img src={props.image} width={64}
+                        height={64}
+                        className="mr-3" alt="" />
                     <strong className="mr-auto">Added to your cart!</strong>
                     <small>Just now..</small>
                 </Toast.Header>
-                <Toast.Body>{props.quantity} {props.title} has been added to your cart. </Toast.Body>
+                <Toast.Body>You've added {props.quantity} units of {props.title} to your cart. </Toast.Body>
             </Toast>
         </div>
     )

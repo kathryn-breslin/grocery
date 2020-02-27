@@ -37,11 +37,6 @@ class Item extends Component {
     render() {
         return (
             <>
-                {/* <ToastComponent
-                    showToast={this.props.showToast}
-                    // close={this.props.close}
-                    newItem={this.state.itemForCart}
-                /> */}
                 <Card style={{ width: '20rem' }}>
                     <Card.Img variant="top" src={this.props.image ? (this.props.image) : ("http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png")} />
                     <Card.Body>
