@@ -4,7 +4,12 @@ import { Toast } from "react-bootstrap";
 function ToastComponent(props) {
     return (
         <div>
-            <Toast show={props.show} onClose={props.show}>
+            <Toast show={props.show} onClose={props.show}
+                style={{
+                    position: 'absolute',
+                    top: 10,
+                    right: 10,
+                }}>
                 <Toast.Header>
                     <img src={props.image} width={64}
                         height={64}
