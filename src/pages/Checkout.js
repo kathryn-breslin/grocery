@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Checkout.css";
 
 class Checkout extends Component {
     constructor() {
@@ -32,7 +33,7 @@ class Checkout extends Component {
                             return (
                                 <div className="row">
                                     <div className="col-12 mt-3">
-                                        <div className="card">
+                                        <div className="card" key={item.id} id={item.id}>
                                             <div className="card-horizontal">
                                                 <div className="img-square-wrapper">
                                                     <img className="" src={item.image} alt="Card image cap" />
@@ -56,7 +57,7 @@ class Checkout extends Component {
         }
         else {
             return (
-                <h1> Nothing in Cart</h1>
+                <h1> Cart is being updated..</h1>
             )
         }
     }
