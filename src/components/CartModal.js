@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Counter from "./Counter";
 
 class CartModal extends Component {
@@ -128,9 +129,13 @@ class CartModal extends Component {
                         <Button variant="secondary" onClick={this.props.close}>
                             Close
                     </Button>
-                        <Button variant="primary" onClick={this.props.checkout}>
+                        {/* <Button variant="primary" onClick={this.props.checkout}>
                             Check Out
-                    </Button>
+                        </Button> */}
+                        <Link to={{
+                            pathname: "/checkout", 
+                            state: this.props.updatedCart
+                        }}>Checkout</Link>
                     </Modal.Footer>
                 </Modal>
             )

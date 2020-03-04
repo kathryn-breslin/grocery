@@ -9,8 +9,8 @@ import * as serviceWorker from './serviceWorker';
 const routes = (
     <Router>
         <div>
-            <Route exact path="/" component={App}/>
-            <Route path="/checkout" component={Checkout}/>
+            <Route exact path="/" component={App} />
+            <Route path="/checkout" component={Checkout} />
         </div>
     </Router>
 )
