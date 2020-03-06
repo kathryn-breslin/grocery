@@ -191,16 +191,6 @@ class App extends Component {
     })
   }
 
-  // checkCartOut = () => {
-  //   console.log("Check out cart")
-  //   console.log("Passing cart state to checkout page...." )
-  //   // console.log(JSON.stringify(this.state.cart))
-
-  //   window.location.href="/checkout"
-
-
-  // }
-
   render() {
     return (
       <div className="container">

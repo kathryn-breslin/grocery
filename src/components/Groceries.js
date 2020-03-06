@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Item from "./Item";
-import ToastComponent from "./Toast";
 
 class Groceries extends Component {
     constructor() {

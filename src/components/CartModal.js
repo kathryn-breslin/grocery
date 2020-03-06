@@ -118,7 +118,6 @@ class CartModal extends Component {
                                         </Card.Text>
                                         <Button variant="primary" onClick={() => this.editCart(item)}>Edit</Button>
                                         <Button variant="warning" onClick={() => this.props.removeFromCart(item)}>Remove</Button>
-
                                         {this.editTransition(this.props)}
                                     </Card.Body>
                                 </Card>
@@ -152,9 +151,6 @@ class CartModal extends Component {
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.props.close}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.props.close}>
-                            Add To Cart
                         </Button>
                     </Modal.Footer>
                 </Modal>
