@@ -1,3 +1,8 @@
 .item-1 {
-    margin-right: 75px;
+    /* margin-right: 75px; */
+    margin: 10px;
+}
+
+.item-2 {
+    margin: 10px;
 }
