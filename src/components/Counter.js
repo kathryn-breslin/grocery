@@ -1,4 +1,21 @@
 import React, { Component } from "react";
+// import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
+// const useStyles = makeStyles(theme => ({
+//     root: {
+//         '& > *': {
+//             margin: theme.spacing(1),
+//             width: 200,
+//         },
+//     },
+// }));
+// const classes = useStyles();
+
 
 class Counter extends Component {
     constructor(props) {
@@ -11,6 +28,7 @@ class Counter extends Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
     }
+
 
     increaseValue = event => {
         event.preventDefault();
@@ -62,14 +80,14 @@ class Counter extends Component {
         return (
             <div>
                 <form className="form">
-                    <div className="form-inline">
-                        <button onClick={this.decreaseValue} className="btn btn-light">
-                            -
-                    </button>
-                        <input className="form-control input" type="text" name="quantity" value={this.state.quantity} onChange={this.handleEventChange} />
-                        <button onClick={this.increaseValue} className="btn btn-light">
-                            +
-                    </button>
+                    <div class="form-inline justify-content-center">
+                        <IconButton>
+                            <RemoveCircleOutlineIcon onClick={this.decreaseValue} />
+                        </IconButton>
+                        <TextField style={{ width: '150px' }} id="outlined-basic" variant="outlined" type="text" name="quantity" value={this.state.quantity} onChange={this.handleEventChange} />
+                        <IconButton>
+                            <AddCircleOutlineIcon onClick={this.increaseValue} />
+                        </IconButton>
                     </div>
                 </form>
 

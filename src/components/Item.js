@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import Counter from "./Counter";
-import ToastComponent from "./Toast";
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Divider from '@material-ui/core/Divider';
 import "./Item.css";
 
 class Item extends Component {
@@ -41,14 +43,17 @@ class Item extends Component {
                     <Card.Img variant="top" src={this.props.image ? (this.props.image) : ("http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png")} />
                     <Card.Body>
                         <Card.Title>{this.props.title}</Card.Title>
-                        <Card.Text>
+                        <Card.Text style={{ marginBottom: '40px' }}>
                             {this.props.name}
-                        </Card.Text>
+                        </Card.Text >
                         <Counter
                             quantity={this.props.quantity}
                             newQuantity={this.props.newQuantity}
                         />
-                        <Button style={{ margin: '10px' }} variant="primary" onClick={() => this.addToCart(this.props)}>Add To Cart</Button>
+                        <Divider style={{marginTop: '30px'}}/>
+                        <IconButton style={{ marginTop: '10px', float: 'right' }} color="primary" aria-label="add to shopping cart" onClick={() => this.addToCart(this.props)}>
+                            <AddShoppingCartIcon />
+                        </IconButton>
                     </Card.Body>
                 </Card>
             </>

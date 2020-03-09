@@ -21,13 +21,7 @@ function CartNav(props) {
             <Nav.Item className="item-1">
                 {props.searchBar}
             </Nav.Item>
-            {/* <Nav.Item>
-                <Nav.Link eventKey="link-1">Total: {props.totalCartQuantity}</Nav.Link>
-            </Nav.Item> */}
             <Nav.Item className="item-2">
-                {/* <Nav.Link onClick={props.openClick}>
-                    <ShoppingCartIcon />
-                </Nav.Link> */}
                 <IconButton>
                     <StyledBadge badgeContent={parseInt(props.totalCartQuantity)} onClick={props.openClick} color="secondary">
                         <ShoppingCartIcon/>
