@@ -64,6 +64,18 @@ class App extends Component {
     this.setState({
       show: false
     })
+    if (this.props.history.location.state) {
+      console.log("Console-logging in App.js to check if state is being passed back from 'Continue Shopping': " + JSON.stringify(this.props.history.location.state))
+
+      this.setState({
+        cart: this.props.history.location.state
+      }, () => this.checkState())
+    }
+
+  }
+
+  checkState = () => {
+    console.log("This.state.cart: " + JSON.stringify(this.state.cart))
   }
 
   // getAPI() {
@@ -193,7 +205,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      // <div className="container">
+      <>
         <CartNav
           totalCartQuantity={this.state.totalCartQuantity}
           openClick={this.open}
@@ -232,7 +245,8 @@ class App extends Component {
           addToTotal={this.addToTotal}
           updatedCart={this.state.cart}
         />
-      </div>
+        {/* </div> */}
+      </>
     )
   }
 }

@@ -21,6 +21,7 @@ class Checkout extends Component {
         this.setState({
             show: true
         })
+        console.log("This.state.cart: " + this.state.cart)
     }
     removeFromCart = (removedProduct) => {
         this.setState(prevState => ({
@@ -59,6 +60,11 @@ class Checkout extends Component {
                                 </div>
                             )
                         })}
+                        <Link to={{
+                            pathname: "/",
+                            state: this.state.cart
+                        }}>Continue Shopping</Link>
+
                     </div>
                 </div>
             )

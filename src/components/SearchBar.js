@@ -16,7 +16,7 @@ const SearchBar = (props) => {
           />
           <button
             onClick={props.handleFormSearch}
-            className="btn btn-outline-light my-2 my-sm-0"
+            className="btn btn-outline-primary my-2 my-sm-0"
             type="submit"
             id="button"
           >
