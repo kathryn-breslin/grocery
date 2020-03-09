@@ -219,9 +219,9 @@ class App extends Component {
           }
         />
         <Jumbo />
-        <div className="container">
+        <div className="container" style={{textAlign: 'center'}}>
           {this.launchToast()}
-          <div className="row">
+          <div className="row" style={{marginBottom: "100px"}}>
             <Groceries
               allItems={this.state.allGroceries}
               quantity={this.state.quantity}

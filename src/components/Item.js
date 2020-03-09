@@ -39,7 +39,7 @@ class Item extends Component {
     render() {
         return (
             <>
-                <Card style={{ width: '20rem' }}>
+                <Card style={{ width: '20rem', marginBottom: '25px' }}>
                     <Card.Img variant="top" src={this.props.image ? (this.props.image) : ("http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png")} />
                     <Card.Body>
                         <Card.Title>{this.props.title}</Card.Title>
@@ -51,7 +51,7 @@ class Item extends Component {
                             newQuantity={this.props.newQuantity}
                         />
                         <Divider style={{marginTop: '30px'}}/>
-                        <IconButton style={{ marginTop: '10px', float: 'right' }} color="primary" aria-label="add to shopping cart" onClick={() => this.addToCart(this.props)}>
+                        <IconButton style={{ marginTop: '10px', float: 'right', color: "#2e7d32" }} aria-label="add to shopping cart" onClick={() => this.addToCart(this.props)}>
                             <AddShoppingCartIcon />
                         </IconButton>
                     </Card.Body>
