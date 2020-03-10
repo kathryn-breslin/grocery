@@ -210,6 +210,17 @@ class App extends Component {
         <CartNav
           totalCartQuantity={this.state.totalCartQuantity}
           openClick={this.open}
+          show={this.state.show}
+          close={this.close}
+          editCart={this.editCart}
+          removeFromCart={this.removeFromCart}
+          checkout={this.checkCartOut}
+          cart={this.state.cart}
+          quantity={this.state.quantity}
+          newQuantity={this.newQuantity}
+          addNewProductToCart={this.addNewProductToCart}
+          addToTotal={this.addToTotal}
+          updatedCart={this.state.cart}
           searchBar={
             <SearchBar
               search={this.state.search}
@@ -219,9 +230,23 @@ class App extends Component {
           }
         />
         <Jumbo />
-        <div className="container" style={{textAlign: 'center'}}>
+        {/* <TemporaryDrawerComp
+          show={this.state.show}
+          open={this.open}
+          close={this.close}
+          editCart={this.editCart}
+          removeFromCart={this.removeFromCart}
+          checkout={this.checkCartOut}
+          cart={this.state.cart}
+          quantity={this.state.quantity}
+          newQuantity={this.newQuantity}
+          addNewProductToCart={this.addNewProductToCart}
+          addToTotal={this.addToTotal}
+          updatedCart={this.state.cart} /> */}
+
+        <div className="container" style={{ textAlign: 'center' }}>
           {this.launchToast()}
-          <div className="row" style={{marginBottom: "100px"}}>
+          <div className="row" style={{ marginBottom: "100px" }}>
             <Groceries
               allItems={this.state.allGroceries}
               quantity={this.state.quantity}

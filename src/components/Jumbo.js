@@ -5,7 +5,7 @@ import "./Jumbo.css";
 function Jumbo() {
     return (
         <>
-            <Jumbotron fluid>
+            <Jumbotron>
                 <Container>
                     <h1 className="title">Grocery</h1>
                 </Container>

@@ -6,3 +6,4 @@ export * from "./CartModal";
 export * from "./Jumbo";
 export * from "./CartNav";
 export * from "./Toast";
+export * from "./DrawerTest";

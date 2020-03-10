@@ -51,7 +51,7 @@ class Item extends Component {
                             newQuantity={this.props.newQuantity}
                         />
                         <Divider style={{marginTop: '30px'}}/>
-                        <IconButton style={{ marginTop: '10px', float: 'right', color: "#2e7d32" }} aria-label="add to shopping cart" onClick={() => this.addToCart(this.props)}>
+                        <IconButton style={{ marginTop: '10px', marginBottom: '10px', float: 'right', color: "#2e7d32" }} aria-label="add to shopping cart" onClick={() => this.addToCart(this.props)}>
                             <AddShoppingCartIcon />
                         </IconButton>
                     </Card.Body>
