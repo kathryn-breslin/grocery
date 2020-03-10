@@ -134,7 +134,7 @@ class TemporaryDrawerComp extends Component {
     sideListElement = side => {
         if (this.props.cart.length > 0) {
             return (
-                <div role='presentation' onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
+                <div role='presentation'>
                     <List>
                         {this.props.cart.map((item, index) => (
                             <ListItem button key={item.id} alignItems="flex-start">
@@ -198,7 +198,7 @@ class TemporaryDrawerComp extends Component {
                         <ShoppingCartIcon />
                     </StyledBadge>
                 </IconButton>
-                <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
+                <Drawer variant="temporary" anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
                     {this.sideListElement('right')}
                 </Drawer>
 
