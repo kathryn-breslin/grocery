@@ -4,16 +4,16 @@ import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Counter from "./Counter";
 import { Link } from "react-router-dom";
+import { Divider } from '@material-ui/core';
 
 
 
@@ -40,8 +40,8 @@ class TemporaryDrawerComp extends Component {
         }
 
         this.toggleDrawer = this.toggleDrawer.bind(this);
-        this.editCart = this.editCart.bind(this);
-        this.editTransition = this.editTransition.bind(this);
+        // this.editCart = this.editCart.bind(this);
+        // this.editTransition = this.editTransition.bind(this);
         this.saveUpdate = this.saveUpdate.bind(this);
         this.saveUpdatedItem = this.saveUpdatedItem.bind(this);
     }
@@ -52,36 +52,36 @@ class TemporaryDrawerComp extends Component {
         })
     }
 
-    editCart = () => {
-        console.log("Editing cart in Modal component")
-        // console.log("Item to edit: " + JSON.stringify(item))
+    // editCart = () => {
+    //     console.log("Editing cart in Modal component")
+    //     // console.log("Item to edit: " + JSON.stringify(item))
 
-        this.setState({
-            edit: true,
-        }, () => this.editTransition())
+    //     this.setState({
+    //         edit: true,
+    //     }, () => this.editTransition())
 
-    }
+    // }
 
-    editTransition = () => {
-        const editCartItem = this.state.edit;
-        // const editItemInCart = this.state.itemToEdit;
+    // editTransition = () => {
+    //     const editCartItem = this.state.edit;
+    //     // const editItemInCart = this.state.itemToEdit;
 
-        console.log("PROPS in Edit Transition Function: " + JSON.stringify(this.props))
-        // console.log("Edit state: " + this.state.edit)
-        // console.log("Item to edit: " + JSON.stringify(editItemInCart))
+    //     console.log("PROPS in Edit Transition Function: " + JSON.stringify(this.props))
+    //     // console.log("Edit state: " + this.state.edit)
+    //     // console.log("Item to edit: " + JSON.stringify(editItemInCart))
 
-        if (editCartItem) {
-            return (
-                <>
-                    <Counter
-                        quantity={this.props.quantity}
-                        newQuantity={this.props.newQuantity}
-                    />
-                    <Button variant="primary" onClick={() => this.saveUpdate(this.props)}>Save</Button>
-                </>
-            )
-        }
-    }
+    //     if (editCartItem) {
+    //         return (
+    //             <>
+    //                 <Counter
+    //                     quantity={this.props.quantity}
+    //                     newQuantity={this.props.newQuantity}
+    //                 />
+    //                 <Button variant="primary" onClick={() => this.saveUpdate(this.props)}>Save</Button>
+    //             </>
+    //         )
+    //     }
+    // }
 
     //this function is called when the user
     //clicks the 'Save' button that is rendered
@@ -132,17 +132,59 @@ class TemporaryDrawerComp extends Component {
     }
 
     sideListElement = side => {
+        if (this.props.cart.length > 0) {
+            return (
+                <div role='presentation' onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
+                    <List>
+                        {this.props.cart.map((item, index) => (
+                            <ListItem button key={item.id} alignItems="flex-start">
+                                <ListItemAvatar>
+                                    <Avatar alit={item.title} src={item.image} />
+                                </ListItemAvatar>
+
+                                <ListItemText
+                                    primary={item.title}
+                                    secondary={"Quantity: " + item.quantity}
+                                />
+                                <ListItemText>
+                                    <Counter
+                                        quantity={this.props.quantity}
+                                        newQuantity={this.props.newQuantity}
+                                    />
+                                    {/* <Button variant="primary" onClick={() => this.saveUpdate(this.props)}>Save</Button> */}
+                                </ListItemText>
+                                <Divider variant="inset" component="li" />
+                                {/* <Button color="primary" onClick={() => this.editCart(item)}>Edit</Button> */}
+                                <Button variant="primary" onClick={() => this.saveUpdate(this.props)}>Save Edit</Button>
+                                <Button color="secondary" onClick={() => this.props.removeFromCart(item)}>Remove</Button>
+                            </ListItem>
+                        ))}
+                        {console.log("PROPS IN SIDEBAR: " + JSON.stringify(this.props))}
+                    </List>
+                    <Divider />
+                    <List>
+                        <ListItem>
+                            <Button color="secondary" onClick={this.toggleDrawer(side, false)}>Close</Button>
+                            <Link to={{
+                                pathname: "/checkout",
+                                state: this.props.updatedCart
+                            }}><Button color="primary">Checkout</Button></Link>
+                        </ListItem>
+                    </List>
+                </div>
+            )
+        }
         return (
             <div role='presentation' onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
                 <List>
-                    {this.props.cart.map((item, index) => (
-                        <ListItem button key={item.id}>
-                            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-                            <ListItemText primary={item.title} />
-                        </ListItem>
-                    ))}
-                    {console.log("PROPS IN SIDEBAR: " + JSON.stringify(this.props))}
+                    <ListItem>
+                        <ListItemText
+                            primary="Your Cart"
+                            secondary="No products in cart"
+                        />
+                    </ListItem>
                 </List>
+                <Divider />
             </div>
         )
     }
