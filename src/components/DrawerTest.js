@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -14,8 +13,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Counter from "./Counter";
 import { Link } from "react-router-dom";
 import { Divider } from '@material-ui/core';
-
-
 
 const StyledBadge = withStyles(theme => ({
     badge: {
@@ -194,7 +191,7 @@ class TemporaryDrawerComp extends Component {
             <div>
                 {/* <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button> */}
                 <IconButton>
-                    <StyledBadge onClick={this.toggleDrawer('right', true)} color="secondary">
+                    <StyledBadge badgeContent={parseInt(this.props.totalCartQuantity)} onClick={this.toggleDrawer('right', true)} color="secondary">
                         <ShoppingCartIcon />
                     </StyledBadge>
                 </IconButton>

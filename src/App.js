@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from "./components/SearchBar";
 import Groceries from "./components/Groceries";
-import CartModal from "./components/CartModal";
+// import CartModal from "./components/CartModal";
 import Jumbo from "./components/Jumbo";
 import CartNav from "./components/CartNav";
 import ToastComponent from "./components/Toast";
@@ -230,20 +230,6 @@ class App extends Component {
           }
         />
         <Jumbo />
-        {/* <TemporaryDrawerComp
-          show={this.state.show}
-          open={this.open}
-          close={this.close}
-          editCart={this.editCart}
-          removeFromCart={this.removeFromCart}
-          checkout={this.checkCartOut}
-          cart={this.state.cart}
-          quantity={this.state.quantity}
-          newQuantity={this.newQuantity}
-          addNewProductToCart={this.addNewProductToCart}
-          addToTotal={this.addToTotal}
-          updatedCart={this.state.cart} /> */}
-
         <div className="container" style={{ textAlign: 'center' }}>
           {this.launchToast()}
           <div className="row" style={{ marginBottom: "100px" }}>
@@ -255,7 +241,7 @@ class App extends Component {
             />
           </div>
         </div>
-
+        {/* 
         <CartModal
           show={this.state.show}
           open={this.open}
@@ -269,7 +255,7 @@ class App extends Component {
           addNewProductToCart={this.addNewProductToCart}
           addToTotal={this.addToTotal}
           updatedCart={this.state.cart}
-        />
+        /> */}
         {/* </div> */}
       </>
     )

@@ -128,11 +128,8 @@ class CartModal extends Component {
                         <Button variant="secondary" onClick={this.props.close}>
                             Close
                     </Button>
-                        {/* <Button variant="primary" onClick={this.props.checkout}>
-                            Check Out
-                        </Button> */}
                         <Link to={{
-                            pathname: "/checkout", 
+                            pathname: "/checkout",
                             state: this.props.updatedCart
                         }}>Checkout</Link>
                     </Modal.Footer>
